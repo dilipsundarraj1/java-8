@@ -10,34 +10,39 @@ public class BiConsumerExample {
 
     public static void nameAndActivities(){
 
-        BiConsumer<String, List<String>> biConsumer = (name,activities) -> System.out.println(name + " : "+ activities );
+        BiConsumer<String, List<String>> studentBiConsumer = (name, activities) -> System.out.println(name + " : " + activities);
 
-        List<Student> studentList = StudentDataBase.getAllStudents();
+        List<Student> students = StudentDataBase.getAllStudents();
 
-        studentList.forEach((student -> biConsumer.accept(student.getName(),student.getActivities())));
+        students.forEach((s) -> studentBiConsumer.accept(s.getName(),s.getActivities()));
     }
 
     public static void main(String[] args) {
 
-        BiConsumer<String,String> biConsumer = (a,b) -> {
-            System.out.println("a :" + a + " , b : "+b);
+
+        BiConsumer<String, String> biConsumer = (a,b) -> {
+            System.out.println(" a : "  +  a + " b : " + b );
         };
+        biConsumer.accept("java7" , "java8");
 
-        biConsumer.accept("java7","java8");
-
-        BiConsumer<Integer,Integer> multiply = (a,b) -> {
-            System.out.println("Multiplication is : " + (a*b));
-        };
-
-        BiConsumer<Integer,Integer> division = (a,b) -> {
-            System.out.println("Division is : " + (a/b));
+        BiConsumer<Integer, Integer> multiply = (a,b) -> {
+            System.out.println("Multiplication : " + (a * b));
         };
 
 
-        multiply.andThen(division).accept(10,5);
+        BiConsumer<Integer, Integer> addition = (a,b) -> {
+            System.out.println("Addition : " + (a + b));
+        };
+
+        BiConsumer<Integer, Integer> division = (a,b) -> {
+            System.out.println("Division : "  + (a / b));
+        };
+
+
+        multiply.andThen(addition).andThen(division).accept(10,5);
+
 
         nameAndActivities();
-
 
     }
 }

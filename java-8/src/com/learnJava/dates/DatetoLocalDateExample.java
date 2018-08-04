@@ -3,6 +3,7 @@ package com.learnJava.dates;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.temporal.ChronoField;
 import java.util.Date;
 
 public class DatetoLocalDateExample {
@@ -10,28 +11,27 @@ public class DatetoLocalDateExample {
     public static void main(String[] args) {
 
         /**
-         * java.util.Date to LocalDate and vice versa
+         *  java.util.Date to LocalDate and vice versa
          */
+
         Date date = new Date();
-        System.out.println("date : " + date);
+        System.out.println("converted Local Date : "+ date.toInstant().atZone(ZoneId.of("America/Chicago")).toLocalDate());
 
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        System.out.println("localDate : " + localDate);
+        LocalDate localDate = LocalDate.now();
+        Date date1 = new Date().from(localDate.atTime(LocalTime.now()).atZone(ZoneId.systemDefault()).toInstant());
+        System.out.println("java.util.date is : " + date1);
 
-        Date date1 = new Date().
-                from(localDate.atTime(LocalTime.now()).atZone(ZoneId.systemDefault()).toInstant());
-
-        System.out.println("date1 : " + date1);
 
         /**
-         * java.sql.Date to LocalDate and vice versa
+         *  LocalDate to java.sql.Date
          */
 
         java.sql.Date date2 = java.sql.Date.valueOf(localDate);
-        System.out.println("date2 : " + date2);
+        System.out.println("java.sql.date is : " + date2);
 
-        LocalDate localDate1 = date2.toLocalDate();
-        System.out.println("localDate1 : " + localDate1);
+
+        LocalDate localDate2 = date2.toLocalDate();
+        System.out.println("converted Local Date : " + localDate2);
 
     }
 }

@@ -6,26 +6,27 @@ public class OptionalOfEmptyNullableExample {
 
     public static Optional<String> ofNullable(){
 
-        Optional<String> stringOptional =Optional.ofNullable("Hello");
-        return stringOptional;
-    }
+       return  Optional.ofNullable("Hello");
 
+    }
 
     public static Optional<String> of(){
 
-        Optional<String> stringOptional =Optional.of("Hello");
-        return stringOptional;
+        return  Optional.of("Hello");
+       // return  Optional.of(null);
+
     }
 
     public static Optional<String> empty(){
 
-        return Optional.empty();
-    }
+        return  Optional.empty();
+        // return  Optional.of(null);
 
+    }
     public static void main(String[] args) {
 
-        System.out.println("OfNUllable : " + ofNullable());
-        System.out.println("of : " + of());
-        System.out.println("empty : " + empty());
+        System.out.println(ofNullable().get());
+        System.out.println(of());
+        System.out.println(empty().get());
     }
 }

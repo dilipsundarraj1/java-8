@@ -5,7 +5,7 @@ import java.util.function.BinaryOperator;
 
 public class BinaryOperatorExample {
 
-    static Comparator<Integer> comparator = (a,b) -> a.compareTo(b);
+   static Comparator<Integer> comparator = (a,b) -> a.compareTo(b);
 
     public static void main(String[] args) {
 
@@ -14,11 +14,10 @@ public class BinaryOperatorExample {
         System.out.println(binaryOperator.apply(3,4));
 
         BinaryOperator<Integer> maxBy = BinaryOperator.maxBy(comparator);
-        System.out.println("Result of MaxBy is : " + maxBy.apply(4,5));
+        System.out.println("Result is: " + maxBy.apply(5, 6));
 
         BinaryOperator<Integer> minBy = BinaryOperator.minBy(comparator);
-        System.out.println("Result of minBy is : " + minBy.apply(4,5));
+        System.out.println("Result is: " + minBy.apply(5, 6));
 
     }
-
 }

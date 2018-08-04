@@ -11,19 +11,23 @@ import java.util.function.Predicate;
 
 public class BiFunctionExample {
 
-    static BiFunction<List<Student>,Predicate<Student>,Map<String,Double>> biFunction = ((students, studentPredicate) -> {
+   static BiFunction<List<Student>,Predicate<Student>,Map<String, Double>> biFunction = (students,studentPredicate)->{
 
         Map<String,Double> studentGradeMap = new HashMap<>();
-        students.forEach(student -> {
+        students.forEach((student -> {
+
             if(studentPredicate.test(student)){
                 studentGradeMap.put(student.getName(),student.getGpa());
             }
-        });
-        return  studentGradeMap;
-    });
+        }));
+
+        return studentGradeMap;
+
+    };
 
     public static void main(String[] args) {
 
-        System.out.println( biFunction.apply(StudentDataBase.getAllStudents(),PredicateStudentExample.p2));
+        System.out.println(biFunction.apply(StudentDataBase.getAllStudents(),PredicateStudentExample.p2));
+
     }
 }

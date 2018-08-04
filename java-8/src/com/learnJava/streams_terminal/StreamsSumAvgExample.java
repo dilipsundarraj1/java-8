@@ -3,29 +3,34 @@ package com.learnJava.streams_terminal;
 import com.learnJava.data.Student;
 import com.learnJava.data.StudentDataBase;
 
-import static java.util.stream.Collectors.averagingInt;
-import static java.util.stream.Collectors.summingInt;
+import java.util.stream.Collectors;
 
 public class StreamsSumAvgExample {
 
     public static int sum(){
 
-        return StudentDataBase.getAllStudents()
+        int totalNoOfNotebooks = StudentDataBase.getAllStudents()
                 .stream()
-                .collect(summingInt(Student::getNoteBooks));
+                .collect(Collectors.summingInt(Student::getNoteBooks));
+
+        return totalNoOfNotebooks;
     }
 
     public static double average(){
 
-        return StudentDataBase.getAllStudents()
+        double totalNoOfNotebooks = StudentDataBase.getAllStudents()
                 .stream()
-                .collect(averagingInt(Student::getNoteBooks));
+                .collect(Collectors.averagingInt(Student::getNoteBooks));
+
+        return totalNoOfNotebooks;
     }
+
 
     public static void main(String[] args) {
 
-        System.out.println("Total No of notebooks : " + sum());
 
-        System.out.println("Average No of notebooks : " + average());
+        System.out.println("Total no of Notebooks : " + sum());
+
+        System.out.println("Average no of Notebooks : " + average());
     }
 }

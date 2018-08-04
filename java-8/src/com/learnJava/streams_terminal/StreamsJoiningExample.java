@@ -1,45 +1,38 @@
 package com.learnJava.streams_terminal;
 
-
 import com.learnJava.data.Student;
 import com.learnJava.data.StudentDataBase;
 
+import java.util.Collection;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.joining;
 
 public class StreamsJoiningExample {
 
-    public static String joining_1(){
+    public static String joining(){
 
-       return StudentDataBase.getAllStudents()
-                .stream()
-                .map(Student::getName)//<Stream<String>>
-                .collect(joining());
+        return StudentDataBase.getAllStudents().stream()
+                .map(Student::getName)
+                .collect(Collectors.joining()); // appends all the strings to produce the output,
     }
 
-    public static String joining_2(){
+    public static String joiningWithDelimiter(){
 
-        return StudentDataBase.getAllStudents()
-                .stream()
-                .map(Student::getName)//<Stream<String>>
-                .collect(joining("-"));
+        return StudentDataBase.getAllStudents().stream()
+                .map(Student::getName)
+                .collect(Collectors.joining("-"));
     }
 
-    public static String joining_3(){
+    public static String joiningWithDelimiterWithPrefix(){
 
-        return StudentDataBase.getAllStudents()
-                .stream()
-                .map(Student::getName)//<Stream<String>>
-                .collect(joining("-","(",")"));
+        return StudentDataBase.getAllStudents().stream()
+                .map(Student::getName)
+                .collect(Collectors.joining("-","[","]"));
     }
 
     public static void main(String[] args) {
 
-        System.out.println("joining_1 : " + joining_1());
-
-        System.out.println("joining_2 : " + joining_2());
-
-        System.out.println("joining_3 : " + joining_3());
+        System.out.println("Names : "+ joining());
+        System.out.println("Names With Delimiter : "+ joiningWithDelimiter());
+        System.out.println("Names With Delimiter Prefix and Suffix : "+ joiningWithDelimiterWithPrefix());
     }
 }

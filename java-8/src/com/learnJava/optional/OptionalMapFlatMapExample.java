@@ -8,52 +8,37 @@ import java.util.Optional;
 
 public class OptionalMapFlatMapExample {
 
-    //filter
-    public static void optionalFilter(){
-
-        Optional<Student> studentOptional =
-            Optional.ofNullable(StudentDataBase.studentSupplier.get()); //Optional<Student>
-
-        studentOptional.
-                filter(student -> student.getGpa()>=4.0)
-                    .ifPresent(student -> System.out.println(student));
+    public static void optionalFlatMap(){
+      Optional<Student> studentOptional =  StudentDataBase.getOptionalStudent();
+      if(studentOptional.isPresent()){
+          Optional<Bike> bikeOptional= studentOptional.
+                  flatMap(Student::getBike); //
+          System.out.println("bikeOptional : " + bikeOptional);
+      }
     }
 
-    //map
-    public static  void optionalMap(){
-        Optional<Student> studentOptional =
-                Optional.ofNullable(StudentDataBase.studentSupplier.get()); //Optional<Student>
+    public static void optionalMap(){
+        Optional<Student> studentOptional =  StudentDataBase.getOptionalStudent();
 
         if(studentOptional.isPresent()){
-            Optional<String> stringOptional = studentOptional
-                    .filter(student -> student.getGpa()>=3.5)
-                    .map(Student::getName);
-            System.out.println(stringOptional.get());
+            Optional<String> nameOptional= studentOptional.
+                    map(Student::getName); //
+            System.out.println("nameOptional : " + nameOptional);
         }
-
     }
 
-    //flatmap
+    public static void optionalFilter(){
 
-    public static void optionalFlatMap(){
+        Optional<Student> studentOptional = StudentDataBase.getOptionalStudent()
+                .filter(student -> student.getGpa()>=4.3);
 
-        Optional<Student> studentOptional =
-                Optional.ofNullable(StudentDataBase.studentSupplier.get()); //Optional<Student>
-
-        Optional<String> name = studentOptional
-                .filter(student -> student.getGpa()>=3.5) //Optional<Student <Optional<Bike>>
-                .flatMap(Student::getBike) //returns -> Optional<Bike>
-                .map(Bike::getName);
-
-        name.ifPresent(s -> System.out.println("name : " + s));
+        studentOptional.ifPresent(student -> System.out.println(student));
 
     }
-
 
     public static void main(String[] args) {
-
-        optionalFilter();
-        optionalMap();
         optionalFlatMap();
+        optionalMap();
+        optionalFilter();
     }
 }

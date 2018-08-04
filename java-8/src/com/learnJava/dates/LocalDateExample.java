@@ -1,71 +1,66 @@
 package com.learnJava.dates;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoField;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAdjusters;
+import java.lang.reflect.Method;
+import java.time.*;
+import java.time.temporal.*;
 
 public class LocalDateExample {
 
+
+
     public static void main(String[] args) {
 
-        LocalDate localDate = LocalDate.now(); //16-July-2018
+        LocalDate localDate = LocalDate.now();
+        System.out.println("Current Date is " + localDate);
 
-        System.out.println("localDate : " + localDate);
+        LocalDate localDate1 = LocalDate.of(2018, 03,03);
+        System.out.println(localDate1);
 
-        LocalDate localDate1 = LocalDate.of(2018,07,17);
-        System.out.println("localDate1 : " + localDate1);
+        System.out.println("Year Day Date " + LocalDate.ofYearDay(2018,365));
 
-        LocalDate localDate2 = LocalDate.ofYearDay(2018,02);
-        System.out.println("localDate2 : " + localDate2);
+        //System.out.println("Epoch Day " + LocalDate.ofEpochDay(1));
 
-        /**
-         * Get values from localDate
-         */
-
-        System.out.println("getMonth : " + localDate.getMonth());
-        System.out.println("getMonthValue : " + localDate.getMonthValue());
-        System.out.println("getDayOfWeek : " + localDate.getDayOfWeek());
-        System.out.println("getDayOfYear : " + localDate.getDayOfYear());
-        System.out.println("Day of Month using get :" +
-                localDate.get(ChronoField.DAY_OF_MONTH));
 
         /**
-         * Modifying Local Date
+         * Getting Values from Local Date
          */
-
-        System.out.println("plusDays : " + localDate.plusDays(2));
-        System.out.println("plusMonths : " + localDate.plusMonths(2));
-        System.out.println("minusDays : " + localDate.minusDays(2));
-        System.out.println("withYear : " +localDate.withYear(2019));
-        System.out.println("with ChronoField : "
-                +localDate.with(ChronoField.YEAR,2020));
-        System.out.println("with TemporalAdjusters : "
-                +localDate.with(TemporalAdjusters.firstDayOfNextMonth()));
-        System.out.println("chronounit minus : " +
-                localDate.minus(1, ChronoUnit.YEARS));
+        System.out.println(localDate.getMonth());
+        System.out.println(localDate.getMonthValue());
+        System.out.println(localDate.getDayOfWeek());
+        System.out.println(localDate.getDayOfYear());
+        System.out.println(localDate.getYear());
+        System.out.println("Day of Month using get : " + localDate.get(ChronoField.DAY_OF_MONTH));
 
         /**
-         * Unsupported
+         * Modifying Values in Local Date
          */
-
-       /* System.out.println("chronounit minus : " +
-                localDate.minus(1, ChronoUnit.MINUTES));*/
-        System.out.println("isSupported : "+ localDate.isSupported(ChronoUnit.YEARS));
+        System.out.println("Plus Weeks  : " + localDate.plusWeeks(1));
+        System.out.println("Plus Years : " + localDate.plusYears(1));
+        System.out.println("Plus Days " + localDate.plusDays(1));
+        System.out.println("Plus Months : " + localDate.plusMonths(1));
+        System.out.println("Minus Months : "+localDate.minusMonths(1));
+        System.out.println("Chrono Unit : " + localDate.minus(2, ChronoUnit.YEARS));
+        System.out.println("With Year : " + localDate.withYear(2019));
+        System.out.println("With Year Chrono Field : " + localDate.with(ChronoField.YEAR , 2019));
+        System.out.println("With Temporal Adjusters : " + localDate.with(TemporalAdjusters.lastDayOfMonth()));
+        System.out.println("With Temporal Adjusters : " + localDate.with(TemporalAdjusters.dayOfWeekInMonth(1, DayOfWeek.FRIDAY))); // maps to the first friday of the week
 
         /**
-         * Additional Support methods
+         * Unsupported Scenarios
          */
+        //  System.out.println("Chrono Unit : " + localDate.minus(2, ChronoUnit.SECONDS));
+        System.out.println("is Supported : " + localDate.isSupported(ChronoUnit.DAYS));
 
-        System.out.println("leapyear : " +
-                LocalDate.ofYearDay(2020,01).isLeapYear());
+        /**
+         * Additional Support Methods
+         */
+        System.out.println("Not a Leap Year : " + localDate.isLeapYear());
+        LocalDate  localDate2 = LocalDate.of(2020,01,31);
+        System.out.println("Leap Year : " +  localDate2.isLeapYear());
 
-        //localDate = 16-July-2018
-        //localDate1 = 17-July-2018
-        System.out.println("isEqual : " +localDate.isEqual(localDate1));
-        System.out.println("isBefore : " +localDate.isBefore(localDate1));
-        System.out.println("isAfter : " +localDate1.isAfter(localDate));
-
+        System.out.println("isBefore : " + localDate1.isBefore(localDate));
+        System.out.println("isAfter : " + localDate1.isAfter(localDate));
+        System.out.println("isEqual : " + localDate1.isEqual(localDate));
 
     }
 }
