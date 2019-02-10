@@ -52,5 +52,7 @@ public class StreamsMinByMaxByExample {
         System.out.println(minBy());
 
         System.out.println(maxBy());
+
+        System.out.println(maxByMultipleStudents());
     }
 }
