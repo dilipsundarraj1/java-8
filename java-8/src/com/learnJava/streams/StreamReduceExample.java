@@ -4,10 +4,13 @@ import com.learnJava.data.Student;
 import com.learnJava.data.StudentDataBase;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.maxBy;
+import static java.util.stream.Collectors.toList;
 
 public class StreamReduceExample {
 
@@ -38,6 +41,8 @@ public class StreamReduceExample {
                 .reduce((s1,s2)->(s1.getGpa()>s2.getGpa()) ? s1 : s2);
         return studentOptional;
     }
+
+
 
 
     public static void main(String[] args) {

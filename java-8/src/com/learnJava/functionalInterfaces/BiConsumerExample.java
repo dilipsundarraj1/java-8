@@ -5,12 +5,15 @@ import com.learnJava.data.StudentDataBase;
 
 import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class BiConsumerExample {
 
     public static void nameAndActivities(){
 
         BiConsumer<String, List<String>> studentBiConsumer = (name, activities) -> System.out.println(name + " : " + activities);
+
+        Consumer<String> stringConsumer = (name) -> System.out.println("name is  :" + name);
 
         List<Student> students = StudentDataBase.getAllStudents();
 

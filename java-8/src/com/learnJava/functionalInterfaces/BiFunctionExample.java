@@ -11,7 +11,10 @@ import java.util.function.Predicate;
 
 public class BiFunctionExample {
 
-   static BiFunction<List<Student>,Predicate<Student>,Map<String, Double>> biFunction = (students,studentPredicate)->{
+    private static Map<String, String> loginPageLocs = new HashMap<>();
+
+
+    static BiFunction<List<Student>,Predicate<Student>,Map<String, Double>> biFunction = (students,studentPredicate)->{
 
         Map<String,Double> studentGradeMap = new HashMap<>();
         students.forEach((student -> {
@@ -25,9 +28,18 @@ public class BiFunctionExample {
 
     };
 
+    public static String getLoginLocs(String sLocator, String elementType) {
+
+        return loginPageLocs.get(elementType);
+    }
+
+    static BiFunction<String,String,String> getLoginLocs = (sLocator,elementType) -> loginPageLocs.get(sLocator);
+
     public static void main(String[] args) {
 
         System.out.println(biFunction.apply(StudentDataBase.getAllStudents(),PredicateStudentExample.p2));
+
+        getLoginLocs.apply("locator","elementType");
 
     }
 }
