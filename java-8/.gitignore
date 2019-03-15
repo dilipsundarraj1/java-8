@@ -24,3 +24,11 @@ dist/
 nbdist/
 .nb-gradle/
 /logs
+### OSX template
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IntelliJ
+/out/
+
