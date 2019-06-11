@@ -23,6 +23,13 @@ public class PredicateAndConsumerExample {
         }
     };
 
+    Consumer<Student> studentConsumer1 = ((student) -> {
+
+        if(p1.and(p2).test(student)){
+            studentBiConsumer.accept(student.getName(),student.getActivities());
+        }
+    });
+
     public void printNameandActivities(List<Student> studentList){
 
         studentList.forEach(studentConsumer);

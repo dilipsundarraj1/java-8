@@ -1,11 +1,8 @@
 package com.learnJava.collections;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ArrayListEnhancements {
 
@@ -20,6 +17,14 @@ public class ArrayListEnhancements {
        names.forEach((s) -> System.out.println(s));
 
        names.forEach(s -> System.out.println(s));
+
+       List<String> strings = Arrays.asList("one", "two","three","four");
+       AtomicInteger count= new AtomicInteger();
+       strings.forEach((name) -> {
+           System.out.println("name : " + name);
+           System.out.println(count.getAndIncrement());
+       });
+
 
    }
 
