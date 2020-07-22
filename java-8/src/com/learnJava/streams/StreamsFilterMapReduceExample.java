@@ -20,7 +20,13 @@ public class StreamsFilterMapReduceExample {
         int totalNoOfnoteBooks = StudentDataBase.getAllStudents().stream()
                 //.filter(genderPredicte)
                 .filter(gradeLevel)
+              /*  .peek(s->{
+                    System.out.println("s : "+ s);
+                })*/
                 .map((Student::getNoteBooks))
+               /* .peek(s1->{
+                    System.out.println("s1 : "+ s1);
+                })*/
                // .reduce(0,(a,b)->a+b); //summing the notebooks.
                 .reduce(0,Integer::sum); //summing the notebooks.
         return  totalNoOfnoteBooks;
